@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectAnsweredQuestions, selectUnansweredQuestions } from '../store/questions';
+import { selectAnsweredQuestions, selectUnansweredQuestions } from '../store/store';
 import { QuestionList } from './question-list.component';
 
 function TabPanel(props: any) {

@@ -3,7 +3,7 @@ import { Button, Card, CardActions, CardContent, CardHeader, FormControl, InputL
 
 import { users } from '../data/users.data';
 import { useDispatch } from 'react-redux';
-import { login } from '../store/userId';
+import { login } from '../store/userId.reducer';
 
 const useStyles = makeStyles((theme: Theme) => ({
   formControl: {

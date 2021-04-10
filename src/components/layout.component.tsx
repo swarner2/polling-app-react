@@ -20,8 +20,8 @@ import clsx from 'clsx';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { logout, selectUserIsLoggedIn } from '../store/userId';
-import { selectCurrentUser } from '../store/users';
+import { selectCurrentUser, selectUserIsLoggedIn } from '../store/store';
+import { logout } from '../store/userId.reducer';
 import { AppRouting } from './app-routing.component';
 
 const drawerWidth = 240;
@@ -89,8 +89,8 @@ export default function Layout() {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch()
-  const user = useSelector(selectCurrentUser);
   const userIsLoggedIn = useSelector(selectUserIsLoggedIn)
+  const user = useSelector(selectCurrentUser);
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
 

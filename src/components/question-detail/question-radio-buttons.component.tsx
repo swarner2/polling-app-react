@@ -5,17 +5,25 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import React from 'react';
-import { QuestionModel } from '../../models/question.model';
+import { useDispatch, useSelector } from 'react-redux';
+import { OptionId, QuestionModel } from '../../models/question.model';
 import { UserModel } from '../../models/user.model';
+import { answerQuestion } from '../../store/questions.reducer';
+import { selectUserId } from '../../store/store';
 import { PageNotFound } from "../page-not-found.component";
 
 
 export default function QuestionRadioButtons(props: {author: UserModel, question: QuestionModel}) {
+  const dispatch = useDispatch()
+  const userId = useSelector(selectUserId)
   const [value, setValue] = React.useState('');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
+  const handleSubmit = () => {
+    dispatch(answerQuestion({userId, questionId: props.question.id, selectedOption: value as OptionId}))
+  }
 // "/static/images/avatar/1.jpg"
   return (
     <div>
@@ -26,10 +34,10 @@ export default function QuestionRadioButtons(props: {author: UserModel, question
             <Avatar alt={props.author.name} src={props.author.avatarURL} />
             Would You Rather:</FormLabel>
           <RadioGroup aria-label="options" name="options" value={value} onChange={handleChange}>
-            <FormControlLabel value="optionOne" control={<Radio />} label={props.question.optionOne.text} />
-            <FormControlLabel value="optionTwo" control={<Radio />} label={props.question.optionTwo.text} />
+            <FormControlLabel value={OptionId.optionOne} control={<Radio />} label={props.question.optionOne.text} />
+            <FormControlLabel value={OptionId.optionTwo} control={<Radio />} label={props.question.optionTwo.text} />
           </RadioGroup>
-          <Button>Submit</Button>
+          <Button disabled={!value} onClick={handleSubmit}>Submit</Button>
         </FormControl>
       : <PageNotFound></PageNotFound>
     }

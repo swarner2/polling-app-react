@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { OptionModel } from '../../models/question.model';
-import { selectQuestions } from '../../store/questions';
-import { selectCurrentUser, selectUsers } from '../../store/users';
+import { selectCurrentUser, selectQuestions, selectUsers } from '../../store/store';
 import QuestionInfo from './question-info';
 import QuestionRadioButtons from './question-radio-buttons.component';
 

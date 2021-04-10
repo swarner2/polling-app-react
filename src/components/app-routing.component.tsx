@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { selectUserIsLoggedIn } from '../store/userId';
+import { selectUserIsLoggedIn } from '../store/store';
 import { Home } from './home.component';
 import { Login } from './login.component';
 import QuestionDetailPage from './question-detail/question-detail-page.component';
@@ -42,7 +42,7 @@ export function AppRouting() {
             userIsLoggedIn 
                 ? 
                 <Switch>
-                    { Object.values(routeConfig).map(route => (<Route exact path={route.path} component={route.component} />)) }
+                    { Object.values(routeConfig).map(route => (<Route key={route.id} exact path={route.path} component={route.component} />)) }
                 </Switch>
                 : <Login></Login>
             }
