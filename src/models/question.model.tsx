@@ -37,7 +37,7 @@ export class QuestionOptionStatsModel {
     const totalNumberOfVotes = optionOneNumberOfVotes + optionTwoNumberOfVotes;
     const answeredOptionOne = user?.answers[question.id] === OptionId.optionOne;
     const answeredOptionTwo = user?.answers[question.id] === OptionId.optionTwo;
-    this.optionOne = new OptionStatsModel(optionOneNumberOfVotes, totalNumberOfVotes, answeredOptionOne, question.optionOne),
+    this.optionOne = new OptionStatsModel(optionOneNumberOfVotes, totalNumberOfVotes, answeredOptionOne, question.optionOne)
     this.optionTwo = new OptionStatsModel(optionTwoNumberOfVotes, totalNumberOfVotes, answeredOptionTwo, question.optionTwo)
   }
 }

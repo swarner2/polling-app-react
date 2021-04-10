@@ -8,7 +8,7 @@ export let questions = {
       text: 'have horrible short term memory'
     },
     optionTwo: {
-      votes: [],
+      votes: ['samwarner'],
       text: 'have horrible long term memory'
     }
   },
@@ -17,7 +17,7 @@ export let questions = {
     author: 'johndoe',
     timestamp: 1468479767190,
     optionOne: {
-      votes: [],
+      votes: ['samwarner'],
       text: 'become a superhero'
     },
     optionTwo: {
@@ -30,7 +30,7 @@ export let questions = {
     author: 'rashmi',
     timestamp: 1488579767190,
     optionOne: {
-      votes: [],
+      votes: ['samwarner'],
       text: 'be telekinetic'
     },
     optionTwo: {
@@ -43,7 +43,7 @@ export let questions = {
     author: 'julian',
     timestamp: 1482579767190,
     optionOne: {
-      votes: [],
+      votes: ['samwarner'],
       text: 'be a front-end developer'
     },
     optionTwo: {
@@ -60,7 +60,7 @@ export let questions = {
       text: 'find $50 yourself'
     },
     optionTwo: {
-      votes: ['johndoe'],
+      votes: ['johndoe', 'samwarner'],
       text: 'have your best friend find $500'
     }
   },
@@ -69,7 +69,7 @@ export let questions = {
     author: 'johndoe',
     timestamp: 1493579767190,
     optionOne: {
-      votes: ['johndoe'],
+      votes: ['johndoe', 'samwarner'],
       text: 'write JavaScript'
     },
     optionTwo: {

@@ -19,12 +19,12 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import clsx from 'clsx';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, useHistory } from 'react-router';
 import { logout, selectUserIsLoggedIn } from '../store/userId';
 import { selectCurrentUser } from '../store/users';
 import { Home } from './home.component';
 import { Login } from './login.component';
-import QuestionDetailRadioButtons from './question-detail-radio-buttons';
+import QuestionDetailPage from './question-detail/question-detail-page.component';
 
 const drawerWidth = 240;
 
@@ -87,27 +87,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function PersistentDrawerLeft() {
+export default function Layout() {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch()
   const user = useSelector(selectCurrentUser);
   const userIsLoggedIn = useSelector(selectUserIsLoggedIn)
   const [open, setOpen] = React.useState(false);
+  const history = useHistory();
 
-  // TODO :: remove
-  const mockSelectedQuestion = {
-    id: '8xf0y6ziyjabvozdd253nd',
-    authorAvatarURL: 'rashmi',
-    optionOne: {
-      votes: ['rashmi'],
-      text: 'have horrible short term memory'
-    },
-    optionTwo: {
-      votes: [],
-      text: 'have horrible long term memory'
-    }  
-  } 
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -116,6 +104,12 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleLogout = () => {
+    // TODO :: create an event for this
+    history.push('/home')
+    dispatch(logout()) 
+  }
 
   return (
     <div className={classes.root}>
@@ -142,7 +136,7 @@ export default function PersistentDrawerLeft() {
           <Typography noWrap>
             {user?.name}
           </Typography>
-            {userIsLoggedIn ? <Button color="inherit" onClick={() => dispatch(logout())}>Logout</Button> : null}
+            {userIsLoggedIn ? <Button color="inherit" onClick={handleLogout}>Logout</Button> : null}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -189,7 +183,7 @@ export default function PersistentDrawerLeft() {
             ? 
               <Switch>
                 <Route exact path="/home" component={Home}/>
-                <Route exact path="/questions/:id" component={QuestionDetailRadioButtons}/>
+                <Route exact path="/questions/:id" component={QuestionDetailPage}/>
               </Switch>
             : <Login></Login>
         }
