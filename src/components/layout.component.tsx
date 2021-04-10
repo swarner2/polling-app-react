@@ -1,28 +1,23 @@
-import { Button } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import clsx from 'clsx';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory, withRouter } from 'react-router';
 import { selectCurrentUser, selectUserIsLoggedIn } from '../store/store';
 import { logout } from '../store/userId.reducer';
-import { AppRouting } from './app-routing.component';
+import { AppMenu, AppRouting, routeConfig } from './app-routing.component';
+
 
 const drawerWidth = 240;
 
@@ -64,7 +59,10 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(0, 1),
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
-      justifyContent: 'flex-end',
+      // justifyContent: 'flex-end',
+    },
+    lastLeftHeader: {
+      flexGrow: 1
     },
     content: {
       flexGrow: 1,
@@ -85,14 +83,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function Layout() {
+export function Layout() {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch()
   const userIsLoggedIn = useSelector(selectUserIsLoggedIn)
+  console.log(userIsLoggedIn)
   const user = useSelector(selectCurrentUser);
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
+  console.log(history.location.pathname)
+  const routeTitle = Object.values(routeConfig)
+    .filter(route => route.path === history.location.pathname)[0].title
 
 
   const handleDrawerOpen = () => {
@@ -105,7 +107,7 @@ export default function Layout() {
 
   const handleLogout = () => {
     // TODO :: create an event for this
-    history.push('/home')
+    history.push(routeConfig.home.path)
     dispatch(logout()) 
   }
 
@@ -128,9 +130,10 @@ export default function Layout() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
+          <Typography variant="h6" noWrap className={clsx(classes.lastLeftHeader)} >
+            {routeTitle}
           </Typography>
+            {userIsLoggedIn ? <Avatar src={user?.avatarURL}/> : null}
           <Typography noWrap>
             {user?.name}
           </Typography>
@@ -152,23 +155,7 @@ export default function Layout() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+        <AppMenu />
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -181,3 +168,5 @@ export default function Layout() {
     </div>
   );
 }
+
+export default withRouter(Layout);

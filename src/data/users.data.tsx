@@ -35,7 +35,7 @@ export let users = {
   samwarner: {
     id: 'samwarner',
     name: 'Samuel Warner',
-    avatarURL: '/assets/avatar1.jpg',
+    avatarURL: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn3.iconfinder.com%2Fdata%2Ficons%2Favatars-15%2F64%2F_Ninja-2-512.png&f=1&nofb=1',
     answers: {
       xj352vofupe1dqz9emx13r: 'optionOne',
       vthrdm985a262al8qx3do: 'optionTwo',

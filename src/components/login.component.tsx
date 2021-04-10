@@ -40,7 +40,7 @@ const [selectedUserId, setSelectedUserId] = useState("");
             </FormControl>
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={() => dispatch(login(selectedUserId))}>Login</Button>
+            <Button size="small" disabled={!selectedUserId} onClick={() => dispatch(login(selectedUserId))}>Login</Button>
           </CardActions>
         </Card>    
       </div>

@@ -18,18 +18,23 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export function QuestionList(props: {questions: QuestionMapModel}) {
   const classes = useStyles();
-
+  const questionValues = Object.values(props.questions)
   return (
     <div className={classes.root}>
-      <List component="nav" aria-label="secondary mailbox folders">
-        {Object.values(props.questions).map(question => {
-          return (
-            <ListItem button key={question.id} component={RouterLink} to={`questions/${question.id}`}>
-              <ListItemText primary={question.id + '-' + question.timestamp}/>
-            </ListItem>
-          )
-        })}
-      </List>
+
+      {
+        questionValues.length
+        ? (<List component="nav" aria-label="secondary mailbox folders">
+            {questionValues.map(question => {
+              return (
+                <ListItem button key={question.id} component={RouterLink} to={`questions/${question.id}`}>
+                  <ListItemText primary={question.id + '-' + question.timestamp}/>
+                </ListItem>
+              )
+            })}
+          </List>)
+        : (<div>No Quesitons Here!</div>)
+      }
     </div>
   );
 }

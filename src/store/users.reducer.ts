@@ -1,11 +1,7 @@
-// import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-// import { users } from '../data/users.data'
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { users } from '../data/users.data'
 import { UserModel } from '../models/user.model'
-import { answerQuestion, AnswerQuestionPayload } from './questions.reducer'
-import { RootState } from './store'
-// import { RootState } from './store'
+import { answerQuestion } from './questions.reducer'
 
 // // Define a type for the slice state
 export interface UsersState {
@@ -39,18 +35,12 @@ export const usersSlice = createSlice({
           })
         }
       })
-    .addDefaultCase((state, action) => {
-      console.log(state)
-      return state
-    })
+    .addDefaultCase((state, action) => state)
   }
 })
 
 export const { add } = usersSlice.actions
 
-export const selectUsers = (state: RootState) => state.users
 
 export default usersSlice.reducer  
 
-export const selectUserId = (state: RootState) => state?.userId?.id || ""
-export const selectCurrentUser = createSelector(selectUsers, selectUserId, (users, userId) => users[userId])
