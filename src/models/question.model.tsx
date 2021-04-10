@@ -8,7 +8,7 @@ export interface QuestionModel {
   optionTwo: OptionModel;
 }
 
-export type QuestionsModel = {[key: string]: QuestionModel };
+export type QuestionMapModel = {[key: string]: QuestionModel };
 
 export class OptionStatsModel {
   numberOfVotes: number;

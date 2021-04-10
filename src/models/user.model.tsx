@@ -1,9 +1,9 @@
 import { OptionId } from "./question.model";
 
 export class UserModel {
-  id: string | null;
-  name: string | null;
-  avatarURL: string | null;
+  id: string;
+  name: string;
+  avatarURL: string;
   answers: {[key: string]: OptionId };
   questions: string[];
 

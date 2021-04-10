@@ -17,18 +17,15 @@ export const userIdSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<string>) => {
-        state = {id: action.payload}
-    },
-    logout: (state) => {
-      state = initialState
-    },
+    login: (state, action: PayloadAction<string>) => ({id: action.payload}),
+    logout: (state) => initialState,
   },
 })
 
 export const { login, logout } = userIdSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectUserId = (state: RootState) => state.userId.id
+export const selectUserId = (state: RootState) => state?.userId?.id || ""
+export const selectUserIsLoggedIn = (state: RootState) => Boolean(state?.userId?.id)
 
 export default userIdSlice.reducer
