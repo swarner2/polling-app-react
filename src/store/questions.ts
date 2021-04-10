@@ -64,4 +64,9 @@ export const selectAnsweredQuestions = createSelector(selectQuestions, selectCur
     return result;
 })
 
+export const selectQuestion = (state: RootState, props: {id: string}) => state.questions[props.id]
+export const selectQuestionUserAvatar = (state: RootState, props: {id: string}) => state.users[state.questions[props.id].author].avatarURL
+
+// export const selectQuestion = createSelector(selectQuestions, (questions, props: {id: string}) => questions)
+
 export default questionsSlice.reducer

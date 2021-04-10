@@ -19,6 +19,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import clsx from 'clsx';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Route, Switch } from 'react-router';
 import { logout, selectUserIsLoggedIn } from '../store/userId';
 import { selectCurrentUser } from '../store/users';
 import { Home } from './home.component';
@@ -185,10 +186,13 @@ export default function PersistentDrawerLeft() {
         <div className={classes.drawerHeader} />
         {
           userIsLoggedIn 
-            ? <Home></Home>
+            ? 
+              <Switch>
+                <Route exact path="/home" component={Home}/>
+                <Route exact path="/questions/:id" component={QuestionDetailRadioButtons}/>
+              </Switch>
             : <Login></Login>
         }
-        <QuestionDetailRadioButtons question={mockSelectedQuestion}></QuestionDetailRadioButtons>
       </main>
     </div>
   );

@@ -3,7 +3,8 @@ import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { QuestionMapModel } from '../models/question.model'
+import { QuestionMapModel } from '../models/question.model';
+import { Link as RouterLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -15,10 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function ListItemLink(props: ListItemProps<'a', { button?: true }>) {
-  return <ListItem button component="a" {...props} />;
-}
-
 export function QuestionList(props: {questions: QuestionMapModel}) {
   const classes = useStyles();
 
@@ -27,9 +24,9 @@ export function QuestionList(props: {questions: QuestionMapModel}) {
       <List component="nav" aria-label="secondary mailbox folders">
         {Object.values(props.questions).map(question => {
           return (
-            <ListItemLink key={question.id} href={`#${question.id}`}>
+            <ListItem button key={question.id} component={RouterLink} to={`questions/${question.id}`}>
               <ListItemText primary={question.id + '-' + question.timestamp}/>
-            </ListItemLink>
+            </ListItem>
           )
         })}
       </List>
