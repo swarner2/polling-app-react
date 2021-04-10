@@ -21,12 +21,9 @@ export default function QuestionDetailPage(props: { match: {params: {id: string 
   const questionId = props.match.params.id 
   const question = questions[questionId]
   const optionCurrentUserSelected = currentUser.answers[questionId] 
-  const authorId = question.author
+  const authorId = question?.author
   const author = users[authorId]
 
-  const [value, setValue] = React.useState('');
-
-// "/static/images/avatar/1.jpg"
   return (
     <div>
         {

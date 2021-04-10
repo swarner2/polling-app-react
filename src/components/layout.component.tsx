@@ -19,12 +19,10 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import clsx from 'clsx';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, useHistory } from 'react-router';
+import { useHistory } from 'react-router';
 import { logout, selectUserIsLoggedIn } from '../store/userId';
 import { selectCurrentUser } from '../store/users';
-import { Home } from './home.component';
-import { Login } from './login.component';
-import QuestionDetailPage from './question-detail/question-detail-page.component';
+import { AppRouting } from './app-routing.component';
 
 const drawerWidth = 240;
 
@@ -178,15 +176,7 @@ export default function Layout() {
         })}
       >
         <div className={classes.drawerHeader} />
-        {
-          userIsLoggedIn 
-            ? 
-              <Switch>
-                <Route exact path="/home" component={Home}/>
-                <Route exact path="/questions/:id" component={QuestionDetailPage}/>
-              </Switch>
-            : <Login></Login>
-        }
+        <AppRouting/>
       </main>
     </div>
   );

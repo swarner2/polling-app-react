@@ -12,7 +12,7 @@ export type QuestionMapModel = {[key: string]: QuestionModel };
 
 export class OptionStatsModel {
   numberOfVotes: number;
-  percentageOfVotes: number;
+  percentageOfVotes: string;
   isUsersAnswer: boolean;
   text: string;
   votes: string[];
@@ -20,7 +20,9 @@ export class OptionStatsModel {
   constructor(numberOfVotes: number, totalNumberOfVotes: number, isUsersAnswer: boolean, option: OptionModel) {
     this.numberOfVotes = numberOfVotes;
     const percentage = numberOfVotes / totalNumberOfVotes;
-    this.percentageOfVotes = Number.isNaN(percentage) || !Number.isFinite(percentage) ? 0 : percentage;
+    this.percentageOfVotes = Number.isNaN(percentage) || !Number.isFinite(percentage) 
+      ? "0%" 
+      : Math.floor((percentage * 100)).toFixed(0) + '%';
     this.isUsersAnswer = isUsersAnswer;
     this.text = option.text;
     this.votes = option.votes;
