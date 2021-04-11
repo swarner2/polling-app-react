@@ -1,8 +1,6 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Link as RouterLink, Redirect, Route, Switch } from 'react-router-dom';
-import { selectUserIsLoggedIn } from '../store/store';
 import { AddQuestion } from "./add-question.component";
 import { Home } from './home.component';
 import Leaderboard from './leaderboard-component';
@@ -22,7 +20,7 @@ export const routeConfig = {
         component: QuestionDetailPage
     },
     'add': {
-        id: 'addQuestion',
+        id: 'add',
         title: 'Add A Question',
         path: '/add',
         component: AddQuestion 
@@ -36,8 +34,6 @@ export const routeConfig = {
 }
 
 export function AppRouting() {
-    const userIsLoggedIn = useSelector(selectUserIsLoggedIn)
-
     return (           
         <Switch>
             { Object.values(routeConfig).map(route => (<Route key={route.id} exact path={route.path} component={route.component} />)) }
