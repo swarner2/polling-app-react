@@ -11,9 +11,12 @@ import { login } from '../store/userId.reducer';
 import { add } from '../store/users.reducer';
 
 const useStyles = makeStyles((theme: Theme) => ({
+  container: {
+    padding: 50
+  },
   card : {
     margin: 'auto',
-    width: 250
+    width: 250,
   },
   formControl: {
     margin: theme.spacing(1),
@@ -58,7 +61,7 @@ export function Login(){
   }
 
     return (
-      <div>
+      <div className={classes.container}>
         <Card className={classes.card} raised={true}>             
           <CardHeader title="Login" ></CardHeader>
           <CardContent>

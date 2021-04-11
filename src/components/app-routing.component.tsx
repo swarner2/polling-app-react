@@ -1,14 +1,12 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Link as RouterLink, Redirect, Route, Switch } from 'react-router-dom';
 import { selectUserIsLoggedIn } from '../store/store';
-import { Home } from './home.component';
-import { Login } from './login.component';
-import QuestionDetailPage from './question-detail/question-detail-page.component';
-import { Link as RouterLink } from 'react-router-dom';
-import Leaderboard from './leaderboard-component';
 import { AddQuestion } from "./add-question.component";
+import { Home } from './home.component';
+import Leaderboard from './leaderboard-component';
+import QuestionDetailPage from './question-detail/question-detail-page.component';
 
 export const routeConfig = {
     'home': {
@@ -41,19 +39,12 @@ export function AppRouting() {
     const userIsLoggedIn = useSelector(selectUserIsLoggedIn)
 
     return (           
-        <div>
-            {
-            userIsLoggedIn 
-                ? 
-                <Switch>
-                    { Object.values(routeConfig).map(route => (<Route key={route.id} exact path={route.path} component={route.component} />)) }
-                    <Route exact path="/">
-                        <Redirect to="/home" />
-                    </Route>
-                </Switch>
-                : <Login></Login>
-            }
-        </div>
+        <Switch>
+            { Object.values(routeConfig).map(route => (<Route key={route.id} exact path={route.path} component={route.component} />)) }
+            <Route exact path="/">
+                <Redirect to="/home" />
+            </Route>
+        </Switch>
     )
 }
 
