@@ -1,11 +1,12 @@
-import { Avatar, Button, Card, CardActionArea, CardActions, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Card, CardContent, CardHeader, makeStyles, Typography } from '@material-ui/core';
+import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
 import React from 'react';
 import { OptionStatsModel, QuestionModel, QuestionOptionStatsModel } from '../../models/question.model';
 import { UserModel } from '../../models/user.model';
-import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
 
 const useStyles = makeStyles({
   root: {
+    margin: 'auto',
     maxWidth: 345,
   },
   content: {

@@ -88,13 +88,11 @@ export function Layout() {
   const theme = useTheme();
   const dispatch = useDispatch()
   const userIsLoggedIn = useSelector(selectUserIsLoggedIn)
-  console.log(userIsLoggedIn)
   const user = useSelector(selectCurrentUser);
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
-  console.log(history.location.pathname)
   const routeTitle = Object.values(routeConfig)
-    .filter(route => route.path === history.location.pathname)[0].title
+    .filter(route => history.location.pathname.includes(route.id))[0]?.title
 
 
   const handleDrawerOpen = () => {

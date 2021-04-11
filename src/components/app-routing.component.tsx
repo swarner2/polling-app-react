@@ -7,7 +7,7 @@ import { Home } from './home.component';
 import { Login } from './login.component';
 import QuestionDetailPage from './question-detail/question-detail-page.component';
 import { Link as RouterLink } from 'react-router-dom';
-import { Leaderboard } from './leaderboard-component';
+import Leaderboard from './leaderboard-component';
 import { AddQuestion } from "./add-question.component";
 
 export const routeConfig = {
@@ -23,7 +23,7 @@ export const routeConfig = {
         path: '/questions/:id',
         component: QuestionDetailPage
     },
-    'addQuestion': {
+    'add': {
         id: 'addQuestion',
         title: 'Add A Question',
         path: '/add',

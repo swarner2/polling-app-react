@@ -24,7 +24,6 @@ export default function QuestionRadioButtons(props: {author: UserModel, question
   const handleSubmit = () => {
     dispatch(answerQuestion({userId, questionId: props.question.id, selectedOption: value as OptionId}))
   }
-// "/static/images/avatar/1.jpg"
   return (
     <div>
     {

@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export function QuestionList(props: {questions: QuestionMapModel}) {
   const classes = useStyles();
-  const questionValues = Object.values(props.questions)
+  const questionValues = Object.values(props.questions).sort((a,b) => b.timestamp - a.timestamp)
+  
   return (
     <div className={classes.root}>
 
@@ -28,7 +29,7 @@ export function QuestionList(props: {questions: QuestionMapModel}) {
             {questionValues.map(question => {
               return (
                 <ListItem button key={question.id} component={RouterLink} to={`questions/${question.id}`}>
-                  <ListItemText primary={question.id + '-' + question.timestamp}/>
+                  <ListItemText primary={question.id}/>
                 </ListItem>
               )
             })}

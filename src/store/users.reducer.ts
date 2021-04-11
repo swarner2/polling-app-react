@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { users } from '../data/users.data'
 import { UserModel } from '../models/user.model'
-import { answerQuestion } from './questions.reducer'
+import { answerQuestion, add as addQuestion } from './questions.reducer'
 
 // // Define a type for the slice state
 export interface UsersState {
@@ -24,17 +24,13 @@ export const usersSlice = createSlice({
     builder
     .addCase(answerQuestion, (state, action) => {
         const {questionId, selectedOption, userId} = action.payload;
-        return {
-          ...state,
-          [userId]: new UserModel({
-            ...state[userId],
-            answers: {
-              ...state[userId].answers || {},
-              [questionId]: selectedOption,
-            }
-          })
-        }
+        state[userId].answers[questionId] = selectedOption
+        return state
       })
+    .addCase(addQuestion, (state, action) => {
+      state[action.payload.author].questions.push(action.payload.id) 
+      return state
+    })
     .addDefaultCase((state, action) => state)
   }
 })

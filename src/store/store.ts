@@ -1,4 +1,4 @@
-import { combineReducers, configureStore, createSelector, createStore } from '@reduxjs/toolkit'
+import { combineReducers, createSelector, createStore } from '@reduxjs/toolkit'
 import userIdReducer from './userId.reducer'
 import questionsReducer from './questions.reducer'
 import usersReducer from './users.reducer'
@@ -11,7 +11,10 @@ const reducer = combineReducers({
 })
 
 
-export const store = createStore(reducer)
+export const store = createStore(
+  reducer,
+  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+  )
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>

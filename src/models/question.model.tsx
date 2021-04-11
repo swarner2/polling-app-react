@@ -1,5 +1,10 @@
 import { UserModel } from './user.model';
 
+export enum OptionId {
+  optionOne = 'optionOne',
+  optionTwo = 'optionTwo'
+}
+
 export interface QuestionModel {
   id: string;
   author: string;
@@ -44,10 +49,6 @@ export class QuestionOptionStatsModel {
   }
 }
 
-export enum OptionId {
-  optionOne = 'optionOne',
-  optionTwo = 'optionTwo'
-}
 
 export interface OptionModel {
   votes: string[]; // list of userIds
