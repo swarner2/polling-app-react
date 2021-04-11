@@ -80,6 +80,9 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    userInfo: {
+      paddingRight: 16
+    }
   }),
 );
 
@@ -131,8 +134,10 @@ export function Layout() {
           <Typography variant="h6" noWrap className={clsx(classes.lastLeftHeader)} >
             {routeTitle}
           </Typography>
-            {userIsLoggedIn ? <Avatar src={user?.avatarURL}/> : null}
-          <Typography noWrap>
+          <div className={classes.userInfo}>
+            {userIsLoggedIn ? <Avatar src={user?.avatarURL} /> : null}
+          </div>
+          <Typography noWrap className={classes.userInfo}>
             {user?.name}
           </Typography>
             {userIsLoggedIn ? <Button color="inherit" onClick={handleLogout}>Logout</Button> : null}

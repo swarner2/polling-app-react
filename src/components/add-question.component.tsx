@@ -73,7 +73,7 @@ export function AddQuestion() {
         </form>
       </CardContent>
       <CardActions>
-        <Button size="small" disabled={!option1 || !option2} onClick={handleSubmit}>Add Question</Button>
+        <Button size="small" color="primary" disabled={!option1 || !option2} onClick={handleSubmit}>Add Question</Button>
       </CardActions>
     </Card>    
   );
